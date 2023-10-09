@@ -8,7 +8,7 @@ export const useAuthStore = defineStore("auth", () => {
   const loginResult: Ref<loginDTo | null> = ref(null);
   const currentUser: Ref<UserDTo | null> = ref(null);
   const loading = ref(false);
-  const islogin = computed(() => loginResult.value != null);
+  const isLogin = computed(() => loginResult.value != null);
 
   const setCurrentValue = async () => {
     const localStorageData = localStorage.getItem("auth-data");
@@ -27,5 +27,5 @@ export const useAuthStore = defineStore("auth", () => {
     }
     loading.value = false;
   };
-  return{loginResult,currentUser,islogin,setCurrentValue,loading}
+  return{loginResult,currentUser,isLogin,setCurrentValue,loading}
 });

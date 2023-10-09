@@ -30,4 +30,5 @@ const email = ref("");
 const formSchema = Yup.object().shape({
   email: Yup.string().required().email(),
 });
+
 </script>

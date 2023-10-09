@@ -1,33 +1,57 @@
 import { useAuthStore } from "~/stores/authStore";
 import { FetchError, FetchOptions } from "‍ohmyfetch";
 import { ApiResponse, AppStatusCode } from "../models/ApiResponse";
+import { BASE_URL } from "~/AppConfig";
 
 export async function FetchApi<T>(
   url: string,
   config: FetchOptions = {}
 ): Promise<ApiResponse<T>> {
   config = {
-    baseURL: "http://shop-api.codeyad-project.ir/",
+    baseURL: BASE_URL,
     ...config,
   };
-const authStore = useAuthStore()
-if(authStore && authStore.islogin){
-let loginData = authStore.loginResult
-config.headers["Authorizetion"] = loginData?.token
-}
-  // return $fetch<ApiResponse<T>>(url, config)
-  //   .then((res) => {
-  //     return res;
-  //   })
-  //   .catch((e: FetchError) => {
-  //     return {
-  //       data: null,
-  //       isSuccess: false,
-  //       metaData: {
-  //         appStatusCode: e.response?._data?.metaData ?? AppStatusCode.ServerErroe
-  //         message:
-  //           e.response?._data?.metaData?.Message ?? "مشکلی در عملیات رخ داده ",
-  //       },
-  //     };
-  //   });
+  const authStore = useAuthStore();
+
+  if (!config.headers) {
+    config.headers = {};
+  }
+  if (authStore && authStore.isLogin) {
+    var loginData = authStore.loginResult;
+    if (loginData) {
+      //@ts-ignore
+      config.headers["Authorization"] = `Bearer ${loginData.token}`;
+    }
+  }
+
+  //@ts-ignore
+  return $fetch<ApiResponse<T>>(url, config)
+    .then((res) => {
+      return res;
+    })
+    .catch((e: FetchError) => {
+      if (e.response?.status == 401) {
+        return {
+          data: null,
+          isSuccess: false,
+          metaData: {
+            appStatusCode: AppStatusCode.UnAuthorize,
+            message:
+              e.response?._data?.MetaData?.Message ?? "مشکلی در عملیات رخ داده",
+          },
+        };
+      } else {
+        return {
+          data: null,
+          isSuccess: false,
+          metaData: {
+            appStatusCode:
+              e.response?._data?.MetaData?.MetaData ??
+              AppStatusCode.ServerError,
+            message:
+              e.response?._data?.MetaData?.Message ?? "مشکلی در عملیات رخ داده",
+          },
+        };
+      }
+    });
 }

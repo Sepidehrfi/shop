@@ -14,5 +14,5 @@ export enum AppStatusCode {
   BadRequest = 3,
   LoginError = 4,
   UnAuthorize = 5,
-  ServerErroe = 6,
+  ServerError ,
 }
