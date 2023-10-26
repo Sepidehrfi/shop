@@ -1,7 +1,7 @@
 <template>
   <div class="auth-container">
     <Head>
-      <title>ورود به حساب</title>
+      <Title>ثبت نام در سایت</Title>
     </Head>
     <div class="auth-title mb-3">ثبت نام در سایت</div>
     <div class="auth-box ui-box">
@@ -13,39 +13,40 @@
       >
         <base-input
           name="phoneNumber"
-          label="شماره تلفن"
-          placeholder="شماره تلفن خود را وارد کنید"
           class="mb-3"
+          label="شماره تلفن"
           v-model="registerData.phoneNumber"
-        ></base-input>
+          placeholder="شماره تلفن خود را وارد کنید"
+        />
         <base-input
           name="password"
-          label="کلمه عبور"
           type="password"
-          placeholder="  کلمه عبور خود را وارد کنید "
+          label="کلمه عبور"
           class="mb-3"
           v-model="registerData.password"
-        ></base-input>
+          placeholder="کلمه عبور  را وارد کنید"
+        />
         <base-input
           name="confirmPassword"
-          label=" تکرار کلمه عبور  "
-          type="Password"
-          placeholder=" تکرار کلمه عبور خود را وارد کنید "
+          type="password"
+          label="تکرار کلمه عبور"
           class="mb-3"
           v-model="registerData.confirmPassword"
-        ></base-input>
+          placeholder="تکرار کلمه عبور  را وارد کنید"
+        />
         <div class="form-element-row mb-3">
           <base-button
-            :disabled="meta.valid === false || loading"
             type="submit"
+            :disabled="meta.valid == false || loading"
+            w-full
             :loading="loading"
-            class="btn btn-primary"
-            >ورود به حساب</base-button
           >
+            ثبت نام درسایت
+          </base-button>
         </div>
         <div class="form-element-row">
           <div>
-            قبلا ثبت نام کرده اید؟
+            قبلا ثبت نام کرده اید ؟
             <nuxt-link to="/auth/login" class="link">ورود به سایت</nuxt-link>
           </div>
         </div>
@@ -62,17 +63,15 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
+  
+  <script setup lang="ts">
 import { Form } from "vee-validate";
+import { RegisterCommandDTo } from "~~/models/auth/registerDTo";
+import { RegisterUser } from "~~/services/auth.service";
 import * as Yup from "yup";
-import { RegisterDTo } from "~/models/auth/registerDTo.ts";
-import { RegisterUser } from "~/services/authServices.ts";
-
 definePageMeta({
   layout: "auth",
 });
-
 const registerSchema = Yup.object().shape({
   phoneNumber: Yup.string()
     .required()
@@ -84,8 +83,7 @@ const registerSchema = Yup.object().shape({
     "کلمه های عبور یکسان نیستند"
   ),
 });
-
-const registerData: registerDTo = reactive({
+const registerData: RegisterCommandDTo = reactive({
   phoneNumber: "",
   password: "",
   confirmPassword: "",
@@ -95,14 +93,17 @@ const router = useRouter();
 
 const register = async () => {
   loading.value = true;
-  let result = await registerUser(registerData);
+  var result = await RegisterUser(registerData);
   loading.value = false;
   if (result.isSuccess) {
     router.push("/auth/login");
+    //Toast
   } else {
+    // Toast
     alert(result.metaData.message);
   }
 };
 </script>
-
-<style></style>
+  
+  <style>
+</style>

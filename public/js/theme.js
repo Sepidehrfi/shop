@@ -30,10 +30,7 @@
         parents.find(".search-result-container").removeClass("show");
       }
     );
-    $(".toggle-navigation").on("click", function () {
-      $(".navigation").addClass("toggle");
-      $(".navigation-overlay").fadeIn(100);
-    });
+   
     $(".navigation .toggle-submenu").on("click", function (event) {
       event.preventDefault();
       $(this).siblings(".submenu").addClass("toggle");
@@ -41,12 +38,6 @@
     $(".navigation .close-submenu").on("click", function (event) {
       event.preventDefault();
       $(this).parent(".submenu").removeClass("toggle");
-    });
-    $(".navigation-overlay, .close-navigation").on("click", function (event) {
-      event.preventDefault();
-      $(".navigation").removeClass("toggle");
-      $(".navigation .submenu").removeClass("toggle");
-      $(".navigation-overlay").fadeOut(100);
     });
   };
   /*====== end Header ======*/
@@ -112,248 +103,8 @@
         delay: 5000,
       },
     });
-    const miniSwiperSlider = new Swiper(".mini-single-swiper-slider", {
-      // Optional parameters
-      slidesPerView: 1,
-      spaceBetween: 10,
-      autoplay: {
-        delay: 5000,
-      },
-      // If we need pagination
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-
-      // Navigation arrows
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });
-    const mainSwiperSlider = new Swiper(".main-swiper-slider", {
-      // Optional parameters
-      slidesPerView: 1,
-      spaceBetween: 10,
-      loop: true,
-      effect: "fade",
-      fadeEffect: {
-        crossFade: true,
-      },
-      autoplay: {
-        delay: 2500,
-      },
-      // If we need pagination
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-        dynamicBullets: true,
-      },
-
-      // Navigation arrows
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });
-    const productSwiperSlider = new Swiper(".product-swiper-slider", {
-      // Optional parameters
-      spaceBetween: 10,
-
-      // If we need pagination
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-        dynamicBullets: true,
-      },
-
-      // Navigation arrows
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-
-      breakpoints: {
-        1200: {
-          slidesPerView: 5,
-        },
-        1090: {
-          slidesPerView: 4,
-        },
-        768: {
-          slidesPerView: 3,
-          spaceBetween: 10,
-        },
-        576: {
-          slidesPerView: 2,
-          spaceBetween: 10,
-        },
-        480: {
-          slidesPerView: 1,
-          spaceBetween: 8,
-        },
-      },
-    });
-    const productSpecialsSwiperSlider = new Swiper(
-      ".product-specials-swiper-slider",
-      {
-        // Optional parameters
-        spaceBetween: 10,
-
-        // If we need pagination
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-          dynamicBullets: true,
-        },
-
-        // Navigation arrows
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-
-        breakpoints: {
-          1200: {
-            slidesPerView: 4,
-          },
-          992: {
-            slidesPerView: 3,
-            spaceBetween: 10,
-          },
-          576: {
-            slidesPerView: 3,
-            spaceBetween: 10,
-          },
-          480: {
-            slidesPerView: 2,
-            spaceBetween: 8,
-          },
-        },
-      }
-    );
-    const categorySwiperSlider = new Swiper(".category-swiper-slider", {
-      // Optional parameters
-      spaceBetween: 10,
-
-      // If we need pagination
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-        dynamicBullets: true,
-      },
-
-      // Navigation arrows
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-
-      breakpoints: {
-        1200: {
-          slidesPerView: 7,
-        },
-        1090: {
-          slidesPerView: 6,
-        },
-        768: {
-          slidesPerView: 5,
-          spaceBetween: 10,
-        },
-        576: {
-          slidesPerView: 4,
-          spaceBetween: 10,
-        },
-        480: {
-          slidesPerView: 3,
-          spaceBetween: 8,
-        },
-        0: {
-          slidesPerView: 2,
-          spaceBetween: 8,
-        },
-      },
-    });
-    const compareSwiperSlider = new Swiper(".compare-swiper-slider", {
-      // Optional parameters
-      spaceBetween: 10,
-      slidesPerView: "auto",
-
-      // Navigation arrows
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });
-    const checkoutPackSwiperSlider = new Swiper(
-      ".checkout-pack-swiper-slider",
-      {
-        // Optional parameters
-        spaceBetween: 10,
-
-        // Navigation arrows
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-
-        breakpoints: {
-          1200: {
-            slidesPerView: 6,
-          },
-          1090: {
-            slidesPerView: 5,
-          },
-          768: {
-            slidesPerView: 4,
-            spaceBetween: 10,
-          },
-          576: {
-            slidesPerView: 3,
-            spaceBetween: 10,
-          },
-          480: {
-            slidesPerView: 2,
-            spaceBetween: 8,
-          },
-        },
-      }
-    );
-    const checkoutTimeSwiperSlider = new Swiper(
-      ".checkout-time-swiper-slider",
-      {
-        // Optional parameters
-        slidesPerView: "auto",
-        spaceBetween: 10,
-        freeMode: true,
-
-        // Navigation arrows
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-      }
-    );
-    if ($(".gallery-swiper-slider").length) {
-      const gallerySwiperSlider = new Swiper(".gallery-swiper-slider", {
-        centeredSlides: true,
-      });
-      const galleryThumbsSwiperSlider = new Swiper(
-        ".gallery-thumbs-swiper-slider",
-        {
-          slidesPerView: 4,
-          slideToClickedSlide: true,
-          centeredSlides: true,
-          spaceBetween: 15,
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
-        }
-      );
-      gallerySwiperSlider.controller.control = galleryThumbsSwiperSlider;
-      galleryThumbsSwiperSlider.controller.control = gallerySwiperSlider;
-    }
+ 
+   
   };
   /*====== end Slider ======*/
 
@@ -370,47 +121,11 @@
   };
   /* end Simplebar ======*/
 
-  /*====== Zoom ======*/
-  SCRIPT.Zoom = function () {
-    if ($(window).width() > 768) {
-      $(".zoom-img").imagezoomsl({
-        zoomrange: [2.12, 12],
-        magnifiersize: [530, 340],
-        scrollspeedanimate: 10,
-        loopspeedanimate: 5,
-        cursorshadeborder: "10px solid black",
-      });
-    }
-  };
-  /* end Zoom ======*/
 
 
 
-  /*====== ShopView ======*/
-  SCRIPT.ShopView = function () {
-    $(".btn-list-view").on("click", function () {
-      $(".listing-products-content .product-card-container").removeClass(
-        "col-xl-3 col-lg-4 col-md-6 col-sm-6"
-      );
-      $(".listing-products-content .product-card-container").addClass(
-        "col-lg-6 col-md-12 col-sm-6"
-      );
-      $(
-        ".listing-products-content .product-card-container .product-card"
-      ).addClass("product-card-horizontal");
-    });
-    $(".btn-grid-view").on("click", function () {
-      $(".listing-products-content .product-card-container").removeClass(
-        "col-lg-6 col-md-12 col-sm-6"
-      );
-      $(".listing-products-content .product-card-container").addClass(
-        "col-xl-3 col-lg-4 col-md-6 col-sm-6"
-      );
-      $(
-        ".listing-products-content .product-card-container .product-card"
-      ).removeClass("product-card-horizontal");
-    });
-  };
+
+
   /* end ShopView ======*/
 
   /*====== Form ======*/
@@ -499,47 +214,7 @@
   };
   /* end Tooltip ======*/
 
-  /*====== Smooth Scroll ======*/
-  SCRIPT.SmoothScroll = function () {
-    var link = $(".product-tabs a.nav-link");
-
-    // Move to specific section when click on menu link
-    link.on("click", function (e) {
-      var target = $($(this).attr("href"));
-      $("html, body").animate(
-        {
-          scrollTop: target.offset().top,
-        },
-        600
-      );
-      $(this).addClass("active");
-      e.preventDefault();
-    });
-
-    // Run the scrNav when scroll
-    $(window).on("scroll", function () {
-      scrNav();
-    });
-
-    // scrNav function
-    // Change active dot according to the active section in the window
-    function scrNav() {
-      var sTop = $(window).scrollTop();
-      $(".tab-content").each(function () {
-        var id = $(this).attr("id"),
-          offset = $(this).offset().top - 1,
-          height = $(this).height();
-        if (sTop >= offset && sTop < offset + height) {
-          link.removeClass("active");
-          $(".product-tabs")
-            .find('[data-scroll="' + id + '"]')
-            .addClass("active");
-        }
-      });
-    }
-    scrNav();
-  };
-  /*====== end Smooth Scroll ======*/
+  
 
   /*====== Box ======*/
   SCRIPT.Box = function () {
@@ -830,13 +505,10 @@
       SCRIPT.Countdown(),
       SCRIPT.Slider(),
       SCRIPT.SimpleBar(),
-      SCRIPT.ShopView(),
-      SCRIPT.Zoom(),
       SCRIPT.Form(),
       SCRIPT.Quantity(),
       SCRIPT.FilterPrice(),
       SCRIPT.Tooltip(),
-      SCRIPT.SmoothScroll(),
       SCRIPT.Box(),
       SCRIPT.Sticky(),
       SCRIPT.CopyClipboard(),

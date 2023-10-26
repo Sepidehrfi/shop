@@ -4,15 +4,14 @@ export interface ApiResponse<TData> {
   metaData: MetaData;
 }
 export interface MetaData {
-  message: String;
+  message: string;
   appStatusCode: AppStatusCode;
 }
-
 export enum AppStatusCode {
   Success = 1,
   NotFound = 2,
   BadRequest = 3,
-  LoginError = 4,
+  LogicError = 4,
   UnAuthorize = 5,
-  ServerError ,
+  ServerError,
 }

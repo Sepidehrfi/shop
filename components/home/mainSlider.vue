@@ -1,124 +1,69 @@
 <template>
-  <div class="swiper main-swiper-slider">
-    <!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
-      <div class="swiper-slide main-swiper-slide">
-        <a href="#" style="background-image: url(/images/slider/main/01.jpg)">
-          <img src="/images/slider/main/01.jpg" alt="" />
-        </a>
-      </div>
-      <div class="swiper-slide main-swiper-slide">
-        <a href="#" style="background-image: url(/images/slider/main/02.jpg)">
-          <img src="/images/slider/main/02.jpg" alt="" />
-        </a>
-      </div>
-      <div class="swiper-slide main-swiper-slide">
-        <a href="#" style="background-image: url(/images/slider/main/03.jpg)">
-          <img src="/images/slider/main/03.jpg" alt="" />
-        </a>
-      </div>
-      <div class="swiper-slide main-swiper-slide">
-        <a href="#" style="background-image: url(/images/slider/main/04.jpg)">
-          <img src="/images/slider/main/04.jpg" alt="" />
-        </a>
-      </div>
-    </div>
-    <!-- If we need pagination -->
-    <div class="swiper-pagination"></div>
-
-    <!-- If we need navigation buttons -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-  </div>
-  <Carousel dir="rtl" v-model="currentSlide">
-    <Slide class="swiper-slide main-swiper-slide">
-      <a
-        class="carousel__item"
-        href="#"
-        style="background-image: url(/images/slider/main/01.jpg)"
-      >
-        <img src="/images/slider/main/01.jpg" alt="" />
+  <BaseCarousel class="main__slider" effect="fade" :loop="true"
+    :modules="[SwiperAutoplay, SwiperEffectFade, SwiperNavigation, SwiperPagination]" :items="data" 
+    :autoplay="{
+      delay: 3000,
+      pauseOnMouseEnter: true
+    }" :navigation="{
+  enabled: true
+}" :pagination="{
+  enabled: true,
+  clickable: true,
+  dynamicBullets: true,
+}" :itemsToShow="1">
+    <template #item="{ item }">
+      <a class="carousel__item" :href="item.link">
+        <base-image :src="GetSliderImage(item.imageName)" :alt="item.title" />
       </a>
-    </Slide>
-    <Slide class="swiper-slide main-swiper-slide">
-      <a
-        class="carousel__item"
-        href="#"
-        style="background-image: url(/images/slider/main/02.jpg)"
-      >
-        <img src="/images/slider/main/02.jpg" alt="" />
-      </a>
-    </Slide>
-    <Slide class="swiper-slide main-swiper-slide">
-      <a
-        class="carousel__item"
-        href="#"
-        style="background-image: url(/images/slider/main/03.jpg)"
-      >
-        <img src="/images/slider/main/03.jpg" alt="" />
-      </a>
-    </Slide>
-    <Slide class="swiper-slide main-swiper-slide">
-      <a
-        class="carousel__item"
-        href="#"
-        style="background-image: url(/images/slider/main/04.jpg)"
-      >
-        <img src="/images/slider/main/04.jpg" alt="" />
-      </a>
-    </Slide>
-    <template #addons="{ slidesCount }">
-      <div class="slide__navigation">
-        <div
-          class="swiper-button-prev"
-          v-if="slidesCount > currentSlide + 1"
-          @click="currentSlide += 1"
-        ></div>
-        <div
-          class="swiper-button-next"
-          v-if="currentSlide > 0"
-          @click="currentSlide -= 1"
-        ></div>
-      </div>
-      <div class="slider__pagination">
-        <label v-for="item in slidesCount" :key="item"></label>
-      </div>
-      <Pagination />
     </template>
-  </Carousel>
+  </BaseCarousel>
 </template>
 
 <script setup lang="ts">
-import "vue3-carousel/dist/carousel.css";
-import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
-
-const currentSlide = ref(0);
+import { SliderDto } from "~~/models/home/homeDataDto";
+import { GetSliderImage } from "~~/utilities/ImageUrls";
+const props = defineProps<{
+  data: SliderDto[];
+}>();
 </script>
 
-<style scoped>
-.carousel__item {
+<style>
+@media screen and (max-width:990px) {
+  .main__slider .carousel__item img {
+    height: auto !important;
+  }
+}
+
+.main__slider .carousel__item {
   border-radius: 15px;
   width: 100%;
 }
-.carousel__item img {
+
+.main__slider .carousel__item img {
   height: 455px;
   border-radius: 15px;
   width: 100%;
 }
-.carousel__slide {
-  padding: 0px;
+
+.main__slider .carousel__slide {
+  padding: 0;
+  border-radius: 15px !important;
 }
-.swiper-button-prev::after,
-.swiper-button-next::after {
-  font-size: 24px;
-  color: white;
-  font-weight: bold;
+
+.main__slider .swiper-button-prev::after,
+.main__slider .swiper-button-next:after {
+  color: white !important;
+  font-size: 24px !important;
+  font-weight: bold !important;
 }
-.swiper-button-prev,
-.swiper-button-next {
-  width: 55px;
-  height: 55px;
-  background: transparent;
+
+.main__slider .swiper-button-prev,
+.main__slider .swiper-button-next {
+  width: 55px !important;
+  height: 55px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .slider__pagination {
@@ -142,4 +87,6 @@ const currentSlide = ref(0);
 .main__slider .swiper-pagination-bullet-active-main {
   background: white !important;
 }
+
+.pag__active {}
 </style>

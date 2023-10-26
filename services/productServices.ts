@@ -1,9 +1,9 @@
+import { SingleProductDto } from "~/models/product/singleProductDTo";
 import { ProductFilterParams, ProductFilterResult } from "~/models/search/ProductSearchResultDTo";
 import { FetchApi } from "~/utilities/customApiFetch";
 import { ApiResponse } from "~~/models/ApiResponse";
 import { baseFilterResult } from "~~/models/base/baseFilterResult";
 import { ProductCardDto } from "~~/models/ProductCard";
-// import { SingleProductDto } from "~~/models/products/singleProductDto";
 // import { RemoveEmptyProps } from "~~/utilities/objectutils";
 
 export const getProductByFilter = (
@@ -14,4 +14,11 @@ export const getProductByFilter = (
     method: "Get",
     params: filterParams,
   });
+};
+
+
+export const GetProductBySlug = (
+  slug: string
+): Promise<ApiResponse<SingleProductDto>> => {
+  return FetchApi("/product/single/" + slug);
 };

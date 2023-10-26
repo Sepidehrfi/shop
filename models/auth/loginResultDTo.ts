@@ -1,4 +1,4 @@
-export interface loginDTo {
+export interface LoginResultDto {
   token: string;
   refreshToken: string;
 }

@@ -1,4 +1,4 @@
-export interface UserDTo {
+export interface UserDto {
   id: number;
   creationDate: Date;
   name: string;
@@ -7,16 +7,17 @@ export interface UserDTo {
   email: string;
   password: string;
   avatarName: string;
-  isActive: true;
+  isActive: boolean;
   gender: Gender;
-  Roles: [];
+  roles: Role[];
 }
-export enum Gender {}
-//    نامشخص  =  ,
-//    خانم = ,
-//    آقا = ,
-
+export enum Gender {
+  نامشخص = 0,
+  آقا = 1,
+  خانم = 2,
+}
 export interface Role {
   roleId: number;
   roleTitle: string;
 }
+``;

@@ -1,6 +1,6 @@
 import { baseFilterParams } from "../base/baseFilterParams";
 import { baseFilterResult } from "../base/baseFilterResult";
-import { CategoryDto } from "../categoreis/categoryDTo";
+import { CategoryDto } from "../categories/categoryDto";
 import { ProductCardDto } from "../ProductCard";
 
 export interface ProductFilterResult extends baseFilterResult<ProductCardDto> {

@@ -3,9 +3,9 @@
     :disabled="loading"
     :class="[
       'btn',
-      { 'btn-sm': size === 'sm' },
-      { 'btn-lg': size === 'lg' },
-      { 'w-100': wFull === true },
+      { 'btn-sm': size == 'sm' },
+      { 'btn-lg': size == 'lg' },
+      { 'w-100': wFull == true },
       outline ? `btn-outline-${color}` : `btn-${color}`,
     ]"
   >
@@ -46,5 +46,9 @@ defineProps({
   margin-left: 0.5rem;
   width: 1.5rem;
   height: 1.5rem;
+}
+button{
+  display: flex;
+  align-items: center;
 }
 </style>

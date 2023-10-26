@@ -1,10 +1,11 @@
 import { useToast } from "vue-toastification";
-
+import { SingleProductDto } from "./../models/products/singleProductDto";
+import { GetProductBySlug } from "./../services/product.service";
 import { defineStore } from "pinia";
 import { Ref } from "vue";
-import { CategoryDto } from "~/models/categoreis/categoryDTo";
-
-import { GetAllCategory } from "~/services/categoryServices";
+import { CategoryDto } from "~~/models/categories/categoryDto";
+import { ProductDto } from "~~/models/products/singleProductDto";
+import { GetAllCategory } from "~~/services/category.service";
 
 export const useUtilStore = defineStore("util", () => {
   const categories: Ref<CategoryDto[]> = ref([]);
@@ -44,7 +45,3 @@ export const useUtilStore = defineStore("util", () => {
     product,
   };
 });
-
-function GetProductBySlug(slug: string) {
-  throw new Error("Function not implemented.");
-}

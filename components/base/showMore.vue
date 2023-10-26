@@ -14,7 +14,7 @@
         {{ showText }} <i class="ri-arrow-down-s-line ms-2"></i>
       </span>
       <span
-        :class="['show-less', { 'd-none': isShow === false }]"
+        :class="['show-less', { 'd-none': isShow == false }]"
         @click="isShow = !isShow"
       >
         {{ closeText }} <i class="ri-arrow-up-s-line ms-2"></i>
@@ -25,19 +25,21 @@
 
 <script setup lang="ts">
 defineProps({
-  closeText: {
-    type: String,
-    default: "مشاهده کمتر",
-  },
   showText: {
     type: String,
     default: "مشاهده بیشتر",
+  },
+  closeText: {
+    type: String,
+    default: "مشاهده کمتر",
   },
   height: {
     type: Number,
     default: 100,
   },
 });
-
 const isShow = ref(false);
 </script>
+
+<style>
+</style>
